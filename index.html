@@ -86,6 +86,39 @@
             cursor: pointer;
             transition: all 0.3s;
         }
+        @media (min-width: 1280px) {
+            body {
+                font-size: 20px;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            body {
+                font-size: 16px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .navigation {
+                display: flex;
+                justify-content: space-around;
+            }
+        }
+        @media (max-width: 767px) {
+            body {
+                font-size: 14px;
+            }
+            .container {
+                padding: 10px;
+            }
+            .navigation {
+                display: block;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
