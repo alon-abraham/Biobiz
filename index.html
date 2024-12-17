@@ -73,6 +73,19 @@
             margin: 0 1rem;
             text-decoration: none;
         }
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #28a745;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            display: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
     </style>
 </head>
 <body>
@@ -97,51 +110,14 @@
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="hero-content">
-        <h1 id="hero-heading">Leading in Green Energy</h1>
+        <h1 id="hero-heading"></h1>
         <p id="hero-description">Shaping a sustainable future with innovative biomass solutions.</p>
         <a href="#services" class="btn-hero mt-3">Discover More</a>
     </div>
 </section>
 
-<!-- About Section -->
-<section id="about" class="container py-5">
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <h2>About Us</h2>
-            <p>BioBiz focuses on innovative biomass solutions that promote sustainability and eco-friendly advancements, helping create a cleaner, greener world.</p>
-        </div>
-        <div class="col-md-6">
-            <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="About BioBiz" class="img-fluid rounded">
-        </div>
-    </div>
-</section>
-
-<!-- Services Section -->
-<section id="services" class="bg-light py-5">
-    <div class="container text-center">
-        <h2 class="mb-4">Our Services</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <h5>Biomass Energy</h5>
-                    <p>Transforming organic waste into renewable energy sources.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <h5>Eco Consultancy</h5>
-                    <p>Offering expert advice on sustainability practices.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <h5>Research & Development</h5>
-                    <p>Pioneering research in innovative biomass technologies.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Back to Top Button -->
+<div id="back-to-top">Top</div>
 
 <!-- Footer -->
 <footer class="footer">
@@ -150,18 +126,37 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    window.addEventListener('scroll', () => {
-        const heroHeading = document.getElementById('hero-heading');
-        const heroDescription = document.getElementById('hero-description');
-        const scrollPos = window.scrollY;
-        if (scrollPos > 50) {
-            heroHeading.style.opacity = '0.7';
-            heroDescription.style.opacity = '0.7';
-        } else {
-            heroHeading.style.opacity = '1';
-            heroDescription.style.opacity = '1';
-        }
+// Smooth Scrolling
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
     });
+});
+
+// Typing Animation
+const heroHeading = document.getElementById('hero-heading');
+const text = "Leading in Green Energy";
+let idx = 0;
+function typeEffect() {
+    if (idx < text.length) {
+        heroHeading.textContent += text.charAt(idx);
+        idx++;
+        setTimeout(typeEffect, 100);
+    }
+}
+typeEffect();
+
+// Back to Top Button
+const backToTop = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+});
+backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 </body>
 </html>
